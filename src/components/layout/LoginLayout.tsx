@@ -5,7 +5,7 @@ import {
 import Header from './header/Header';
 import Footer from './footer/Footer';
 
-const Layout = () => (
+const LoginLayout = () => (
     <Fragment>
         <Header />
         <div className="content">
@@ -22,4 +22,4 @@ const Layout = () => (
         </div>
     </Fragment>
 );
-export default Layout;
+export default LoginLayout;

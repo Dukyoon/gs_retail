@@ -1,58 +1,37 @@
+import { useState } from "react";
+import { useLocation } from "react-router";
+import SidebarMenuList from "./SidebarMenuList";
+
+export interface Menu {
+    id: string;
+    name: string;
+    path: string;
+    menuId: string;
+    show: boolean;
+    leaf: boolean;
+    leafs: any;
+}
+
+
 const Sidebar = () => {
+    const menuList = [
+        {id: "1", name: "숨김메뉴", path: "/hide", menuId: "", show: false, leaf: false, leafs: null},
+        {id: "2", name: "배너광고 그룹 리포트", path: "/bannerAdGroupReport", menuId: "", show: true, leaf: false, leafs: null},
+        {id: "3", name: "2뎁스메뉴", path: "", menuId: "", show: true, leaf: true, leafs: [
+            {id: "4", name: "홈", path: "/home", menuId: "", show: true, leaf: false, leafs: null},
+            {id: "5", name: "이동안됨", path: "/asdf", menuId: "", show: true, leaf: false, leafs: null}
+        ]},
+        {id: "6", name: "2뎁스메뉴22", path: "", menuId: "", show: true, leaf: true, leafs: [
+            {id: "7", name: "이동안됨22", path: "/124124", menuId: "", show: true, leaf: false, leafs: null},
+            {id: "8", name: "이동안됨33", path: "/124124235", menuId: "", show: true, leaf: false, leafs: null}
+        ]},
+    ]
+    const pathName = useLocation().pathname;
+    
     return (
         <aside className="lnb sidebar">
             <ul className="inner-lnb sidebar-menu">
-                <li className="one-depth treeview active">
-                    <a>새 광고 만들기<i className="ico i-16 ico-arrow"></i></a>
-                    <ul className="two-depth treeview-menu">
-                        <li className="selected">
-                            <a>컨설팅 받고 만들기</a>
-                        </li>
-                        <li>
-                            <a>직접 만들기</a>
-                        </li>
-                    </ul>
-                </li>
-                <li className="one-depth treeview">
-                    <a>캠페인 관리</a>
-                </li>
-                <li className="one-depth treeview">
-                    <a>리포트<i className="ico i-16 ico-arrow"></i></a>
-                    <ul className="two-depth treeview-menu">
-                        <li>
-                            <a href="/bannerAdGroupReport">배너광고 그룹 리포트</a>
-                        </li>
-                        <li>
-                            <a>캠페인</a>
-                        </li>
-                        <li>
-                            <a>프로젝트</a>
-                        </li>
-                    </ul>
-                </li>
-                <li className="one-depth treeview">
-                    <a>비즈머니<i className="ico i-16 ico-arrow"></i></a>
-                    <ul className="two-depth treeview-menu">
-                        <li>
-                            <a>요약</a>
-                        </li>
-                        <li>
-                            <a>비즈머니 충전</a>
-                        </li>
-                        <li>
-                            <a>이용 내역</a>
-                        </li>
-                    </ul>
-                </li>
-                <li className="one-depth treeview">
-                    <a>설정</a>
-                </li>
-                <li className="one-depth treeview">
-                    <a>문의하기</a>
-                </li>
-                <li className="one-depth treeview">
-                    <a>사용 가이드</a>
-                </li>
+                <SidebarMenuList items={menuList} loading={true} activeMenu={pathName}/>
             </ul>
         </aside>
     )
