@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
-// import "react-datepicker/dist/react-datepicker.css";
-import "./ReactDatePicker.css";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 //스위트알럿2 : https://sweetalert2.github.io/#examples
 
