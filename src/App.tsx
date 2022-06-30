@@ -7,7 +7,9 @@ import './wabiz/css/fonts/NotoSansKR/NotoSansKR.css';
 import './wabiz/css/common.css';
 import './wabiz/css/layout.css';
 import './wabiz/css/plugin.css';
-import Home from './pages/common/Home';
+
+import './wabiz/css/ReactDatePicker.css';
+
 import MenuRouters from './route/MenuRoute';
 
 function App() {
