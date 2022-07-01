@@ -1,3 +1,29 @@
+import Swal from "sweetalert2";
+
+const infoOpenAndRedirect = () => {
+    Swal.fire({title : '로컬 스토리지 현재 권한', text : window.localStorage.getItem("role")}).then(() => {
+        window.location.replace("/");
+    })
+}
+const getAdvRole = () => {
+    const role = { role: ["ROLE_ADV","ROLE_LOGIN"] };
+    window.localStorage.setItem("role", JSON.stringify(role));
+    infoOpenAndRedirect();
+}
+
+const getMgrRole = () => {
+    const role = { role: ["ROLE_MGR","ROLE_LOGIN"] };
+    window.localStorage.setItem("role", JSON.stringify(role));
+    infoOpenAndRedirect();
+}
+
+const getAllRole = () => {
+    const role = { role: ["ROLE_ADV", "ROLE_MGR", "ROLE_LOGIN"] };
+    window.localStorage.setItem("role", JSON.stringify(role));
+    infoOpenAndRedirect();
+}
+
+
 const Header = () => {
     return (
         <header className="header">{/*  Header : Start */}
@@ -69,6 +95,11 @@ const Header = () => {
                     </div>
                 </div>
                 {/*  Shadow : Start */}
+                <div className="form-group">
+                    <button type="button" className="btn btn-info" onClick={getAdvRole}>광고주 권한 획득</button>
+                    <button type="button" className="btn btn-danger" onClick={getMgrRole}>관리자 권한 획득</button>
+                    <button type="button" className="btn btn-dark" onClick={getAllRole}>모든 권한 획득</button>
+                    </div>
             </div>
             {/*  User-Info : End */}
             {/*  Header : End */}</header>

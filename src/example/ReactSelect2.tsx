@@ -1,6 +1,7 @@
 //기본 예제용
 import React from 'react';
-import Select from 'react-select';
+import Select, { components } from 'react-select';
+import CheckboxComponent from './ReactSelectCheckboxComponent';
 
 //리액트 셀렉트박스 : https://react-select.com/home#getting-started
 //고정 옵션으로 들어가는 경우 데이터
@@ -10,8 +11,6 @@ const fixedOption = [
     {value: "advName", label : "광고주명"},
     
 ]
- 
- 
 
 const ReactSelect2 = () => {
     return (
@@ -27,7 +26,7 @@ const ReactSelect2 = () => {
                     <div className="box-option">
                         {/* select 스타일이 가볍게 안 먹어서 div로 강제 추가  */}
                         <div className="select2" style={{width:300}}> 
-                            <Select className="default-select" placeholder="검색 기준을 선택해주세요." options={fixedOption} />
+                            <Select className="default-select" placeholder="검색 기준을 선택해주세요." isSearchable={false} options={fixedOption} />
                         </div>
                     </div>
                 </div>
@@ -47,11 +46,10 @@ const ReactSelect2 = () => {
                     </div>
                     <div className="box-option">
                         <div className="select2" style={{width:300}}> 
-                            <Select className="clear-select" placeholder="검색을 통해 항목을 선택하세요." isClearable={true} isSearchable={true} options={fixedOption} />
+                            <Select className="clear-select" classNamePrefix='fixed' placeholder="검색을 통해 항목을 선택하세요." isClearable={true} isSearchable={true} options={fixedOption} />
                         </div>
                     </div>
                 </div>
-            
             </section>
         </div>
         </>
