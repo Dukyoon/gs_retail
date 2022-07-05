@@ -3,43 +3,53 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 /** 어디선가 줏어온 파일 업로드 관련 소스. 심플하게 기능이 잘 적용되어 잇는 거 같아서 테스트 중. */
 
 interface IOptions {
-  accept?: string;
-  multiple?: boolean;
+  accept: string;
+  multiple: boolean;
 }
 
-function useFileDrop(options?: IOptions) {
+function useFileUpload(options?: IOptions) {
   const inputRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLLabelElement>(null);
-  const [isDragActive, setIsDragActive] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
+  const [isDragActive, setIsDragActive] = useState(false);
+  const [file, setFile] = useState<File>();
 
   const onChangeFile = useCallback(
     (e: Event) => {
       if (!(e.target as HTMLInputElement).files) return;
+      const convertTarget = (e.target as HTMLInputElement); 
 
-      const selectFiles = (e.target as HTMLInputElement).files as FileList;
+      const selectFiles = convertTarget.files as FileList;
       const uploadFiles = Array.from(selectFiles);
+      
+      console.log(selectFiles);
+      console.log(uploadFiles);
+      //기존 기능에서 추가. file의 주소를 input text에 넣어준다. TEXT 부분은 파일의 ID와 동일하게 + DESC로 통일.
+      const fileUploadDescId = convertTarget.id+"Desc";
+      document.getElementById(fileUploadDescId).setAttribute('value', convertTarget.value);
 
-      setFiles((prevFiles) => [...prevFiles, ...uploadFiles]);
+      options.multiple ? setFiles((prevFiles) => [...prevFiles, ...uploadFiles]) : setFile(uploadFiles[0]);
     },
-    [files]
+    [files, file]
   );
 
   const onDragFile = useCallback(
     (e: DragEvent) => {
       if (!e?.dataTransfer?.files) return;
+      console.log("onDragFile");
 
       const selectFiles = e.dataTransfer.files;
       const uploadFiles = Array.from(selectFiles);
 
-      setFiles((prevFiles) => [...prevFiles, ...uploadFiles]);
+      options.multiple ? setFiles((prevFiles) => [...prevFiles, ...uploadFiles]) : setFile(uploadFiles[0]);
     },
-    [files]
+    [files, file]
   );
 
   const onDragEnter = useCallback((e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log("onDragEnter");
 
     setIsDragActive(true);
   }, []);
@@ -47,6 +57,7 @@ function useFileDrop(options?: IOptions) {
   const onDragLeave = useCallback((e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log("onDragLeave");
 
     setIsDragActive(false);
   }, []);
@@ -54,12 +65,14 @@ function useFileDrop(options?: IOptions) {
   const onDragOver = useCallback((e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log("onDragOver");
   }, []);
 
   const onDrop = useCallback(
     (e: DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
+      console.log("onDrop");
 
       onDragFile(e);
       setIsDragActive(false);
@@ -69,6 +82,7 @@ function useFileDrop(options?: IOptions) {
 
   useEffect(() => {
     if (!inputRef.current || !options) return;
+    console.log("useEffect01");
 
     if (options.accept) {
       inputRef.current.setAttribute('accept', options.accept);
@@ -81,6 +95,7 @@ function useFileDrop(options?: IOptions) {
 
   useEffect(() => {
     if (!labelRef.current) return;
+    console.log("useEffect02");
 
     labelRef.current.addEventListener('dragenter', onDragEnter);
     labelRef.current.addEventListener('dragleave', onDragLeave);
@@ -97,7 +112,7 @@ function useFileDrop(options?: IOptions) {
 
   useEffect(() => {
     if (!inputRef.current) return;
-
+    console.log("useEffect03");
     inputRef.current.setAttribute('type', 'file');
 
     inputRef.current.addEventListener('change', onChangeFile);
@@ -105,13 +120,19 @@ function useFileDrop(options?: IOptions) {
       inputRef.current?.removeEventListener('change', onChangeFile);
     };
   }, [inputRef]);
-
+  //항목 추가하려면 여기에 추가해야함.
   return {
     inputRef,
     labelRef,
     files,
     isDragActive,
+    file,
   };
 }
 
-export default useFileDrop;
+useFileUpload.defaultProps = {
+  accept: 'csv/8',
+  multiple: false,
+}
+
+export default useFileUpload;
