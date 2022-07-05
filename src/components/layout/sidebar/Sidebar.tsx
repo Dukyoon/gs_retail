@@ -25,6 +25,7 @@ const Sidebar = () => {
             {id: "12", name: "AgGrid", path: "/example/agGrid", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
             {id: "13", name: "ReactDatePicker", path: "/example/datePicker", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
             {id: "14", name: "ReactDateRange", path: "/example/dateRange", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
+            {id: "15", name: "FileUpload", path: "/example/fileUpload", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
             
         ]},
         {id: "7", name: "2뎁스메뉴-테스트", path: "", menuId: "", show: true, leaf: true, roleGroup: "ROLE_MGR", leafs: [

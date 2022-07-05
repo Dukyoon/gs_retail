@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import LoginLayout from '../components/layout/LoginLayout';
 import AgGrid from '../example/AgGrid';
+import FileUpload from '../example/FileUpload';
 import ReactDatePicker from '../example/ReactDatePicker';
 import ReactDatenRangePicker from '../example/ReactDateRangePicker';
 import ReactModal from '../example/ReactModal';
@@ -26,6 +27,7 @@ const MenuRouters = () => (
                     <Route path="/example/agGrid" element={<AgGrid />}></Route>
                     <Route path="/example/datePicker" element={<ReactDatePicker />}></Route>
                     <Route path="/example/dateRange" element={<ReactDatenRangePicker />}></Route>
+                    <Route path="/example/fileUpload" element={<FileUpload />}></Route>
                     <Route path="*" element={<Error/>}></Route>
             </Route>
             
