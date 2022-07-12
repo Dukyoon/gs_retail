@@ -4,9 +4,10 @@ import React, { useCallback, useMemo, useState } from 'react';
 import 'ag-grid-community/dist/styles/ag-grid.css'; // Core grid CSS, always needed
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'; // Optional theme CSS
 import { AgGridReact } from 'ag-grid-react';
-import { ColDef, ICellRendererParams, ITooltipParams } from 'ag-grid-community';
+import { ColDef, ICellRendererParams } from 'ag-grid-community';
 import Swal from 'sweetalert2';
-
+import { Link, useNavigate } from 'react-router-dom';
+import qs from 'query-string';
 //AG-GRID : https://www.ag-grid.com/react-data-grid/getting-started/
 
 
@@ -14,7 +15,7 @@ function createData(count: number, prefix: string) {
     var result = [];
     for (var i = 0; i < count; i++) {
       result.push(
-        {id: '100', make: "합계", model: "-", codeNo: 3, tooltipText: "-", actYn: "-", price: 2358902537890, rowInfoButton: "-", toggleButton: "-",  }
+        {id: '100', make: "합계", model: "-", codeNo: 3, tooltipText: "-", actYn: "-", price: 2358902537890, rowInfoButton: "-", toggleButton: "-", move: "-"  }
         );
     };
     return result;
@@ -37,6 +38,21 @@ const AgGrid = () => {
 
     ]);
     
+    const pageGetMoveRenderer = (props: ICellRendererParams) => {
+        console.log(props.colDef.field);
+        const rowData = props.data;
+        const location = props.colDef.field === "toggle2Button" ? 
+        qs.stringifyUrl({url: '/example/agGridGetPage', query : {id: rowData.id, codeNo: rowData.codeNo, model:rowData.model}}) 
+        : 
+        qs.stringifyUrl({url: '/example/agGridGetPage', query : {id: rowData.id, codeNo: rowData.codeNo}}) ;
+        if(props.data.make === '합계') {
+            return ( <><span>-</span></> )
+        } else {
+            return (
+                <> <Link to = {location}> {rowData.codeNo} </Link> </>
+            );
+        }
+    };
     const rowInfoButtonRenderer = (props: ICellRendererParams) => {
         const rowData = props.data;
         const buttonInCellClick = () => {
@@ -103,7 +119,9 @@ const AgGrid = () => {
             { headerName: '헤더 툴팁 예제', field: 'tooltipText', headerTooltip:"헤더 툴팁툴팁"},
             { headerName: '컬럼 툴팁 예제', field: 'tooltipText', tooltipValueGetter: cellTooltipText},
             { headerName: '버튼 예제', field: 'rowInfoButton', cellRenderer: rowInfoButtonRenderer},
-            { headername: '토글 예제', field: 'toggleButton', cellRenderer: rowInfoToggleRenderer},
+            { headerName: '토글 예제', field: 'toggleButton', cellRenderer: rowInfoToggleRenderer},
+            { headerName: '페이지 이동 예제(파라미터 노출)', field: 'toggle2Button', cellRenderer: pageGetMoveRenderer},
+            { headerName: '페이지 이동 예제(파라미터 없을 경우)', field: 'toggle3Button', cellRenderer: pageGetMoveRenderer},
             // cellRendererSelector: (params: ICellRendererParams) => {
             //     const toggleButton = {
             //       component: AgGridToogleFilter,
@@ -144,3 +162,7 @@ const AgGrid = () => {
 
 
 export default AgGrid;
+function useHistory() {
+    throw new Error('Function not implemented.');
+}
+

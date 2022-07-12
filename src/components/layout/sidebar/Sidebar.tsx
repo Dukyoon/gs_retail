@@ -18,6 +18,8 @@ const Sidebar = () => {
     const menuList = [
         {id: "1", name: "숨김메뉴", path: "/hide", menuId: "", show: false, leaf: false, roleGroup: "ROLE_ADV", leafs: null},
         {id: "2", name: "배너광고 그룹 리포트", path: "/bannerAdGroupReport", menuId: "", show: true, leaf: false, roleGroup: "ROLE_ADV", leafs: null},
+        {id: "17", name: "USE_HOOK 데이터 조회", path: "/useSendTest", menuId: "", show: true, leaf: false, roleGroup: "ROLE_ADV", leafs: null},
+
         {id: "4", name: "컴포넌트 대체 예제", path: "", menuId: "", show: true, leaf: true, roleGroup: "ROLE_MGR", leafs: [
             {id: "5", name: "React-Select2", path: "/example/reactSelect2", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
             {id: "10", name: "SweetAlert2", path: "/example/sweetAlert2", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
@@ -26,6 +28,8 @@ const Sidebar = () => {
             {id: "13", name: "ReactDatePicker", path: "/example/datePicker", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
             {id: "14", name: "ReactDateRange", path: "/example/dateRange", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
             {id: "15", name: "FileUpload", path: "/example/fileUpload", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
+            {id: "16", name: "CustomCall", path: "/example/customCall", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
+            {id: "18", name: "ReactCharts", path: "/example/reactChart", menuId: "", show: true, leaf: false, roleGroup: "ROLE_MGR", leafs: null},
             
         ]},
         {id: "7", name: "2뎁스메뉴-테스트", path: "", menuId: "", show: true, leaf: true, roleGroup: "ROLE_MGR", leafs: [
@@ -35,7 +39,6 @@ const Sidebar = () => {
         
     ]
     const pathName = useLocation().pathname;
-    console.log("레이아웃 컴포넌트 - 실행 체크");
     return (
         <aside className="lnb sidebar">
             <ul className="inner-lnb sidebar-menu">

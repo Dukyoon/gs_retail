@@ -3,7 +3,12 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Layout from '../components/layout/Layout';
 import LoginLayout from '../components/layout/LoginLayout';
 import AgGrid from '../example/AgGrid';
+import AgGridGetPage from '../example/AgGridGetPage';
+import AgGridMovePage from '../example/AgGridGetPage';
+import AgGridPostPage from '../example/AgGridPostPage';
+import CustomCall from '../example/CustomCall';
 import FileUpload from '../example/FileUpload';
+import ReactChart from '../example/ReactChart';
 import ReactDatePicker from '../example/ReactDatePicker';
 import ReactDatenRangePicker from '../example/ReactDateRangePicker';
 import ReactModal from '../example/ReactModal';
@@ -12,6 +17,7 @@ import SweetAlert2 from '../example/SweetAlert2';
 import Home from '../pages/common/Home';
 import Login from '../pages/common/Login';
 import Error from '../pages/etc/Error';
+import UseSendTest from '../pages/etc/useSendTest';
 import BannerAdGroupReport from '../pages/report/bannerAd/groupReport';
 
 const MenuRouters = () => (
@@ -21,13 +27,18 @@ const MenuRouters = () => (
                 <Route path="/" element={<Navigate replace to="/home"/>}></Route>
                     <Route path="/home" element={<Home />}></Route>
                     <Route path="/bannerAdGroupReport" element={<BannerAdGroupReport />}></Route>
+                    <Route path="/useSendTest" element={<UseSendTest />}></Route>
                     <Route path="/example/reactSelect2" element={<ReactSelect2 />}></Route>
                     <Route path="/example/sweetAlert2" element={<SweetAlert2 />}></Route>
                     <Route path="/example/reactModal" element={<ReactModal />}></Route>
                     <Route path="/example/agGrid" element={<AgGrid />}></Route>
+                    <Route path="/example/agGridGetPage" element={<AgGridGetPage />}></Route>
+                    <Route path="/example/agGridPostPage" element={<AgGridPostPage />}></Route>
                     <Route path="/example/datePicker" element={<ReactDatePicker />}></Route>
                     <Route path="/example/dateRange" element={<ReactDatenRangePicker />}></Route>
                     <Route path="/example/fileUpload" element={<FileUpload />}></Route>
+                    <Route path="/example/customCall" element={<CustomCall />}></Route>
+                    <Route path="/example/reactChart" element={<ReactChart />}></Route>
                     <Route path="*" element={<Error/>}></Route>
             </Route>
             

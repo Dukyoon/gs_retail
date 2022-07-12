@@ -1,7 +1,7 @@
 //기본 예제용
 import React, { useCallback, useMemo, useState } from 'react';
 import Swal from 'sweetalert2';
-import useFileUpload from '../components/useFileUpload';
+import useFileUpload from '../customHook/useFileUpload';
 
 const FileUpload = () => {
     //화면에서 하나의 인풋에 여러 파일을 올리는 경우(거의 없음) = files / 그 외의 싱글은 모두 file을 사용

@@ -9,15 +9,17 @@ interface MenuListProps {
 }
 
 const SidebarMenuList = (props: MenuListProps) => {
-    console.log("사이드바메뉴리스트 컴포넌트 - 실행 체크");
     //현재의 로컬스토리지의 상태값을 꺼내온다.
     const role = window.localStorage.getItem("role");
-    console.log(role);
-    console.log(typeof role);
     //이거 쓰려고 tsConfig.json strictNullChecks: false 추가. https://velog.io/@librarian/react-native-typescript-%EC%97%90%EB%9F%AC
-    const jsonRole = JSON.parse(role);
+    let jsonRole = JSON.parse(role);
     console.log(jsonRole);
-    console.log(jsonRole.role);
+    if(jsonRole === null ){
+        //임시처리
+        const role = { role: ["ROLE_ADV", "ROLE_MGR", "ROLE_LOGIN"] };
+        window.localStorage.setItem("role", JSON.stringify(role));
+        jsonRole = JSON.parse(window.localStorage.getItem("role"));
+    } 
     return (
         <>
             {props.loading && props.items?.map((menu) => (
@@ -72,6 +74,6 @@ const SidebarMenuList = (props: MenuListProps) => {
 
 export default SidebarMenuList;
 
-function usetState(items: Menu[] | undefined): [any, any] {
-    throw new Error('Function not implemented.');
-}
+// function usetState(items: Menu[] | undefined): [any, any] {
+//     throw new Error('Function not implemented.');
+// }

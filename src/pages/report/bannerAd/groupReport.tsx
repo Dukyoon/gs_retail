@@ -1,5 +1,6 @@
 import { ColDef, GridReadyEvent } from 'ag-grid-community';
 import axios from 'axios';
+import moment from 'moment';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Swal from 'sweetalert2';
 import SearchFilter from '../../../components/contentHeader/SearchFilter';
@@ -9,7 +10,7 @@ import DataGrid from '../../../components/wrap_datagrid/DataGrid';
 
 
 const BannerAdGroupReport = () => {
-    /** 검색 관련 */
+    /** 검색 : 셀렉트박스 및 검색어 관련 */
     const searchOption = [ {value: "comNo", label : "거래처번호"}, {value: "comName", label : "거래처명"}, {value: "groupName", label : "그룹명"} ];
     const [searchForm, setSearchForm] = useState({ searchSelect: "", searchText: "" });
     const [, setSearchSelect] = useState("");
@@ -24,6 +25,16 @@ const BannerAdGroupReport = () => {
         setSearchText(e.currentTarget.value);
         setSearchForm({...searchForm, searchText: e.currentTarget.value});
     }, [searchForm]);
+
+    /** 검색 : 조회 기간 관련 */
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate ] = useState(null);
+
+    const dateOption = {
+        antdOption : {buttonList: 1110011101, startDate : startDate, endDate : endDate },
+        dateFn : {startFn : setStartDate, endFn : setEndDate}
+    }
+    
 
     /** 그리드 관련 */
     const [rowData, setRowData] = useState<any[]>();
@@ -42,9 +53,11 @@ const BannerAdGroupReport = () => {
 
     const gridSearch = (event) => {
         event.preventDefault();
+        const start = startDate.format("YYYY.MM.DD");
+        const end = endDate.format("YYYY.MM.DD");
         Swal.fire({
             title : `폼 정보`,
-            text: '검색 항목 : ' + searchForm.searchSelect + " / 검색어 : " + searchForm.searchText
+            text: '검색 항목 : ' + searchForm.searchSelect + " / 검색어 : " + searchForm.searchText + " / 조회 기간 : " + start + " ~ " + end
         });
         axios.get('https://www.ag-grid.com/example-assets/olympic-winners.json')
         .then((resp) => resp.data)
@@ -61,7 +74,7 @@ const BannerAdGroupReport = () => {
                 <section className="wrap-section wrap-datagrid">
                     {/* 최상단 헤더 영역 */}
                     <div className="box-header">
-                        <BoxHeader title={"그룹 리포트 조회"} titleDesc={"설명설명"} csvBtnDisplay={false} csvDownloadEvent={null} />
+                        <BoxHeader title={"그룹 리포트 조회"} titleDesc={"비록 css는 깨지지만 동작은 90% 이상 가능합니다.."} csvBtnDisplay={false} csvDownloadEvent={null} />
                         {/* <div className="box-tit">
                             <h2 className="fz-20 fc-1 fw-bold">{"그룹 리포트 조회"}</h2>
                             <h3 className="fz-12 fc-3"><i className="fz-12 fc-5">*</i>{"설명설명"}</h3>
@@ -69,7 +82,7 @@ const BannerAdGroupReport = () => {
                     </div>
                     {/* 조회 필터 영역 */}
                     <form id="searchForm" onSubmit={gridSearch}>
-                        <SearchFilter searchOption={searchOption} onChangeSelect={onChangeSelect} onChangeText={onChangeText}/>
+                        <SearchFilter searchOption={searchOption} dateOption={dateOption} onChangeSelect={onChangeSelect} onChangeText={onChangeText} />
                     </form>
                     {/* 데이터 그리드 영역 */}
                     <>

@@ -1,7 +1,7 @@
 import Select, { Props } from 'react-select';
+import RangePickerComponent from './RangePickerComponent';
  
-const SearchFilter = ({searchOption, onChangeSelect, onChangeText}) => {
-    console.log("test");
+const SearchFilter = ({searchOption, dateOption, onChangeSelect, onChangeText}) => {
     return (
         <>
             <div className="wrap-filter">
@@ -32,24 +32,18 @@ const SearchFilter = ({searchOption, onChangeSelect, onChangeText}) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="item-filter">
+                        <div className="item-filter">
                             <div className="filter-tit">
                                 <p className="fz-12 fc-2">조회기간</p>
                             </div>
                             <div className="box-filter">
-                                    <!-- Comp-Datepicker Range : Start -->
-                                <div className="comp-datepicker">
-                                    <div className="inner-datepicker">
-                                        <i className="ico ico-calendar"></i>
-                                        <input type="text" className="tf-comm datepicker-range" readonly="">
-                                        <span className="fz-12 fc-2">사용자 설정</span>
-                                    </div>
-                                    <button type="button" className="btn btn-prev"></button>
-                                    <button type="button" className="btn btn-next"></button>
-                                </div>
-                                <!-- Comp-Datepicker Range : End -->
+                                <RangePickerComponent 
+                                    option={dateOption.antdOption} 
+                                    dateFn={dateOption.dateFn} 
+                                    //changeFn={antdDateRangePickerOnChange} 
+                                />
                             </div>
-                        </div> */}
+                        </div>
                     </div>
                     <div className="box-right">
                         <button type="submit" className="btn btn-tertiary-mint btn-ico"><i className="ico ico-filter"></i>필터 조회 </button>
