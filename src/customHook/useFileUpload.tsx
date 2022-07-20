@@ -131,7 +131,7 @@ function useFileUpload(options?: IOptions) {
 }
 
 useFileUpload.defaultProps = {
-  accept: 'csv/8',
+  accept: 'csv/*',
   multiple: false,
 }
 

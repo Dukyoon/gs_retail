@@ -1,9 +1,8 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 // import { useForm } from 'react-hook-form';
 // import { useNavigate } from 'react-router';
 // import qs from 'qs';
 // import ApiUtil from '../../../api/ApiUtil';
-// import alertify from '../../../wabiz/js/alertify.min.js';
 // import { loginSuccess } from '../../layout/Header/Header';
 
 export interface loginForm {

@@ -39,12 +39,9 @@ const DataGrid = (props: DataGridProps) => {
       }, []);
 
     const pinnedBottomRowData = useMemo<any[]>(() => {
-        console.log("합게로우"); 
         return props.totalRowData;
         //gridRef.current!.api.setPinnedBottomRowData(props.totalRowData);
-
-
-     }, []);
+    }, []);
 
     const csvDownload = useCallback(() => {
         gridRef.current!.api.exportDataAsCsv();

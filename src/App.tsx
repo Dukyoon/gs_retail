@@ -1,14 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Layout from './components/layout/Layout';
+// import './App.css';
+// import './gsadp/css/fonts/NotoSansKR/NotoSansKR.css';
+import './gsadp/css/fonts/Pretendard/fonts.css';
+import './gsadp/css/common.css';
+import './gsadp/css/layout.css';
+import './gsadp/css/plugin.css';
 
-import './wabiz/css/fonts/NotoSansKR/NotoSansKR.css';
-import './wabiz/css/common.css';
-import './wabiz/css/layout.css';
-import './wabiz/css/plugin.css';
-
-import './wabiz/css/ReactDatePicker.css';
+//import './gsadp/css/ReactDatePicker.css';
 
 import MenuRouters from './route/MenuRoute';
 

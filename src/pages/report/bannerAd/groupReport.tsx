@@ -1,9 +1,8 @@
-import { ColDef, GridReadyEvent } from 'ag-grid-community';
+import { ColDef } from 'ag-grid-community';
 import axios from 'axios';
-import moment from 'moment';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Swal from 'sweetalert2';
-import SearchFilter from '../../../components/contentHeader/SearchFilter';
+import SearchFilter from '../../../components/search/SearchFilter';
 import ContentHeader from "../../../components/layout/content/ContentHeader";
 import BoxHeader from '../../../components/wrap_datagrid/BoxHeader';
 import DataGrid from '../../../components/wrap_datagrid/DataGrid';

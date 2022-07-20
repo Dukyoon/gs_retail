@@ -7,11 +7,11 @@ import "react-datepicker/dist/react-datepicker.css";
 //ANTD 관련 
 import AntdDatePicker from 'antd/lib/date-picker';
 import AntdLocale from 'antd/es/date-picker/locale/ko_KR';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import 'moment/locale/ko'; // 이거 무조건 들어가야 함
 import moment from "moment";
 import { Button, Row, Space } from "antd";
-import RangePickerComponent from "../components/contentHeader/RangePickerComponent";
+import RangePickerComponent from "../components/date/RangePickerComponent";
 const ReactDatePicker = () => {
     //const momentKorea = moment.locale('ko');
 

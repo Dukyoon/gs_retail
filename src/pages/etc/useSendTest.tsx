@@ -1,11 +1,10 @@
-import { ColDef, GridReadyEvent } from 'ag-grid-community';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import SearchFilter from '../../components/contentHeader/SearchFilter';
+import { ColDef } from 'ag-grid-community';
+import { useMemo, useState } from 'react';
+import SearchFilter from '../../components/search/SearchFilter';
 import ContentHeader from "../../components/layout/content/ContentHeader";
 import BoxHeader from '../../components/wrap_datagrid/BoxHeader';
 import DataGrid from '../../components/wrap_datagrid/DataGrid';
 import useCall from '../../customHook/customCall';
-import customCall from '../../customHook/customCall';
 
 
   
@@ -102,7 +101,3 @@ const UseSendTest = () => {
 }
 
 export default UseSendTest;
-
-function useSWR(arg0: string, fetcher: any): { data: any; error: any; } {
-    throw new Error('Function not implemented.');
-}
